@@ -1,0 +1,339 @@
+  [1m[35m (143.9ms)[0m  [1m[35mCREATE DATABASE "yash_webhook_task_development" ENCODING = 'unicode'[0m
+  [1m[35m (45.0ms)[0m  [1m[35mCREATE DATABASE "yash_webhook_task_test" ENCODING = 'unicode'[0m
+  [1m[35m (9.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8327013337351701615)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateWebhooks (20240418061852)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "webhooks" ("id" bigserial primary key, "source" character varying, "data" jsonb, "message" character varying, "event" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20240418061852"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2024-04-18 06:18:58.811115"], ["updated_at", "2024-04-18 06:18:58.811115"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(8327013337351701615)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8327013337351701615)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(8327013337351701615)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2024-04-18 11:50:02 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/witmates/.rvm/gems/ruby-3.0.0/gems/railties-7.0.8.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/witmates/.rvm/gems/ruby-3.0.0/gems/railties-7.0.8.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.2ms | Allocations: 832)
+Completed 200 OK in 14ms (Views: 4.8ms | ActiveRecord: 0.0ms | Allocations: 9236)
+
+
+Started GET "/webhooks" for ::1 at 2024-04-18 11:50:15 +0530
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.3ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 1238)
+  Rendered layout layouts/application.html.erb (Duration: 168.7ms | Allocations: 84041)
+Completed 200 OK in 173ms (Views: 169.8ms | ActiveRecord: 0.3ms | Allocations: 85894)
+
+
+Started POST "/webhooks/github_pull_request" for 127.0.0.1 at 2024-04-18 12:12:39 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant WebhookController
+Did you mean?  WebhooksController):
+  
+Started GET "/webhooks" for ::1 at 2024-04-18 12:14:43 +0530
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.2ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1120)
+  Rendered layout layouts/application.html.erb (Duration: 23.8ms | Allocations: 33710)
+Completed 200 OK in 27ms (Views: 24.5ms | ActiveRecord: 0.2ms | Allocations: 38125)
+
+
+Started GET "/webhooks" for ::1 at 2024-04-18 12:14:44 +0530
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.2ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 1.2ms | Allocations: 709)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | Allocations: 2046)
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.2ms | Allocations: 2385)
+
+
+Started POST "/webhooks/github_pull_request" for 127.0.0.1 at 2024-04-18 12:16:59 +0530
+  
+ActionController::RoutingError (uninitialized constant WebhookController
+Did you mean?  WebhooksController):
+  
+Started POST "/webhooks/strip" for 127.0.0.1 at 2024-04-18 12:17:30 +0530
+  
+ActionController::RoutingError (uninitialized constant WebhookController
+Did you mean?  WebhooksController):
+  
+Started POST "/webhooks/github_pull_request" for 127.0.0.1 at 2024-04-18 12:19:01 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WebhooksController#create as */*
+  Parameters: {"message"=>"ping", "event"=>"pull_request", "source"=>"github_pull_request"}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 0ms (ActiveRecord: 0.0ms | Allocations: 621)
+
+
+  
+ActionController::InvalidAuthenticityToken (Can't verify CSRF token authenticity.):
+  
+actionpack (7.0.8.1) lib/action_controller/metal/request_forgery_protection.rb:253:in `handle_unverified_request'
+actionpack (7.0.8.1) lib/action_controller/metal/request_forgery_protection.rb:286:in `handle_unverified_request'
+actionpack (7.0.8.1) lib/action_controller/metal/request_forgery_protection.rb:275:in `verify_authenticity_token'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:400:in `block in make_lambda'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:199:in `block (2 levels) in halting'
+actionpack (7.0.8.1) lib/abstract_controller/callbacks.rb:34:in `block (2 levels) in <module:Callbacks>'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:200:in `block in halting'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:595:in `block in invoke_before'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:595:in `each'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:595:in `invoke_before'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:116:in `block in run_callbacks'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:138:in `run_callbacks'
+actionpack (7.0.8.1) lib/abstract_controller/callbacks.rb:233:in `process_action'
+actionpack (7.0.8.1) lib/action_controller/metal/rescue.rb:23:in `process_action'
+actionpack (7.0.8.1) lib/action_controller/metal/instrumentation.rb:67:in `block in process_action'
+activesupport (7.0.8.1) lib/active_support/notifications.rb:206:in `block in instrument'
+activesupport (7.0.8.1) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (7.0.8.1) lib/active_support/notifications.rb:206:in `instrument'
+actionpack (7.0.8.1) lib/action_controller/metal/instrumentation.rb:66:in `process_action'
+actionpack (7.0.8.1) lib/action_controller/metal/params_wrapper.rb:259:in `process_action'
+activerecord (7.0.8.1) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (7.0.8.1) lib/abstract_controller/base.rb:151:in `process'
+actionview (7.0.8.1) lib/action_view/rendering.rb:39:in `process'
+actionpack (7.0.8.1) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.8.1) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.8.1) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.8.1) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.8.1) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.8.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.8.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.8.1) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.9) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.9) lib/rack/etag.rb:27:in `call'
+rack (2.2.9) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.9) lib/rack/head.rb:12:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/http/permissions_policy.rb:38:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/http/content_security_policy.rb:36:in `call'
+rack (2.2.9) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.9) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/cookies.rb:704:in `call'
+activerecord (7.0.8.1) lib/active_record/migration.rb:638:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/show_exceptions.rb:29:in `call'
+railties (7.0.8.1) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.8.1) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.8.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.8.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.8.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.8.1) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.9) lib/rack/method_override.rb:24:in `call'
+rack (2.2.9) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.8.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.9) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/host_authorization.rb:138:in `call'
+railties (7.0.8.1) lib/rails/engine.rb:530:in `call'
+puma (5.6.8) lib/puma/configuration.rb:252:in `call'
+puma (5.6.8) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.8) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.8) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.8) lib/puma/server.rb:443:in `process_client'
+puma (5.6.8) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started POST "/webhooks/github_pull_request" for 127.0.0.1 at 2024-04-18 12:21:39 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WebhooksController#create as */*
+  Parameters: {"message"=>"ping", "event"=>"pull_request", "source"=>"github_pull_request"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/webhooks_controller.rb:16:in `create'
+  [1m[36mWebhook Create (0.4ms)[0m  [1m[32mINSERT INTO "webhooks" ("source", "data", "message", "event", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["source", "github_pull_request"], ["data", "{\"message\":\"ping\",\"event\":\"pull_request\",\"controller\":\"webhooks\",\"action\":\"create\",\"source\":\"github_pull_request\"}"], ["message", "ping"], ["event", "pull_request"], ["created_at", "2024-04-18 06:51:39.706665"], ["updated_at", "2024-04-18 06:51:39.706665"]]
+  ↳ app/controllers/webhooks_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/webhooks_controller.rb:16:in `create'
+[ActiveJob] Enqueued WebhookJob (Job ID: 3ea3ddf2-4678-4eea-ab9d-6cbcb1f93b0e) to Async(default) with arguments: #<GlobalID:0x00007afadcf3c788 @uri=#<URI::GID gid://yash-webhook-task/Webhook/1>>
+Completed 200 OK in 17ms (Views: 0.2ms | ActiveRecord: 3.5ms | Allocations: 23685)
+
+
+[ActiveJob] [WebhookJob] [3ea3ddf2-4678-4eea-ab9d-6cbcb1f93b0e]   [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks" WHERE "webhooks"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [WebhookJob] [3ea3ddf2-4678-4eea-ab9d-6cbcb1f93b0e] Performing WebhookJob (Job ID: 3ea3ddf2-4678-4eea-ab9d-6cbcb1f93b0e) from Async(default) enqueued at 2024-04-18T06:51:39Z with arguments: #<GlobalID:0x00007afaa80832e8 @uri=#<URI::GID gid://yash-webhook-task/Webhook/1>>
+[ActiveJob] [WebhookJob] [3ea3ddf2-4678-4eea-ab9d-6cbcb1f93b0e] Performed WebhookJob (Job ID: 3ea3ddf2-4678-4eea-ab9d-6cbcb1f93b0e) from Async(default) in 4.93ms
+Started GET "/webhooks" for ::1 at 2024-04-18 12:21:55 +0530
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.3ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/_webhook.html.erb (Duration: 0.4ms | Allocations: 332)
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 14.0ms | Allocations: 2268)
+  Rendered layout layouts/application.html.erb (Duration: 36.9ms | Allocations: 34486)
+Completed 200 OK in 42ms (Views: 38.8ms | ActiveRecord: 0.3ms | Allocations: 37387)
+
+
+Started POST "/webhooks/strip" for 127.0.0.1 at 2024-04-18 12:22:15 +0530
+Processing by WebhooksController#create as */*
+  Parameters: {"message"=>"ping", "event"=>"pull_request", "source"=>"strip"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/webhooks_controller.rb:16:in `create'
+  [1m[36mWebhook Create (0.5ms)[0m  [1m[32mINSERT INTO "webhooks" ("source", "data", "message", "event", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["source", "strip"], ["data", "{\"message\":\"ping\",\"event\":\"pull_request\",\"controller\":\"webhooks\",\"action\":\"create\",\"source\":\"strip\"}"], ["message", "ping"], ["event", "pull_request"], ["created_at", "2024-04-18 06:52:15.378135"], ["updated_at", "2024-04-18 06:52:15.378135"]]
+  ↳ app/controllers/webhooks_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (8.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/webhooks_controller.rb:16:in `create'
+[ActiveJob] Enqueued WebhookJob (Job ID: fa8925c2-d099-4063-b36a-3e96c51dc158) to Async(default) with arguments: #<GlobalID:0x00007afaa809b5c8 @uri=#<URI::GID gid://yash-webhook-task/Webhook/2>>
+Completed 200 OK in 18ms (Views: 0.3ms | ActiveRecord: 9.2ms | Allocations: 2471)
+
+
+[ActiveJob] [WebhookJob] [fa8925c2-d099-4063-b36a-3e96c51dc158]   [1m[36mWebhook Load (0.3ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks" WHERE "webhooks"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [WebhookJob] [fa8925c2-d099-4063-b36a-3e96c51dc158] Performing WebhookJob (Job ID: fa8925c2-d099-4063-b36a-3e96c51dc158) from Async(default) enqueued at 2024-04-18T06:52:15Z with arguments: #<GlobalID:0x00007afaa80b0db0 @uri=#<URI::GID gid://yash-webhook-task/Webhook/2>>
+[ActiveJob] [WebhookJob] [fa8925c2-d099-4063-b36a-3e96c51dc158] Performed WebhookJob (Job ID: fa8925c2-d099-4063-b36a-3e96c51dc158) from Async(default) in 2.6ms
+Started GET "/webhooks" for ::1 at 2024-04-18 12:22:18 +0530
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.4ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/_webhook.html.erb (Duration: 0.1ms | Allocations: 48)
+  Rendered webhooks/_webhook.html.erb (Duration: 0.0ms | Allocations: 47)
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 19.3ms | Allocations: 1038)
+  Rendered layout layouts/application.html.erb (Duration: 20.4ms | Allocations: 2382)
+Completed 200 OK in 22ms (Views: 20.8ms | ActiveRecord: 0.4ms | Allocations: 2716)
+
+
+Started POST "/webhooks/stripe" for 127.0.0.1 at 2024-04-18 12:22:25 +0530
+Processing by WebhooksController#create as */*
+  Parameters: {"message"=>"ping", "event"=>"pull_request", "source"=>"stripe"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/webhooks_controller.rb:16:in `create'
+  [1m[36mWebhook Create (0.5ms)[0m  [1m[32mINSERT INTO "webhooks" ("source", "data", "message", "event", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["source", "stripe"], ["data", "{\"message\":\"ping\",\"event\":\"pull_request\",\"controller\":\"webhooks\",\"action\":\"create\",\"source\":\"stripe\"}"], ["message", "ping"], ["event", "pull_request"], ["created_at", "2024-04-18 06:52:25.696441"], ["updated_at", "2024-04-18 06:52:25.696441"]]
+  ↳ app/controllers/webhooks_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (8.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/webhooks_controller.rb:16:in `create'
+[ActiveJob] Enqueued WebhookJob (Job ID: 37de5444-b74f-437f-8ec7-e9c802bf6ff9) to Async(default) with arguments: #<GlobalID:0x00005d3d3c6e0a38 @uri=#<URI::GID gid://yash-webhook-task/Webhook/3>>
+Completed 200 OK in 18ms (Views: 0.3ms | ActiveRecord: 9.1ms | Allocations: 2468)
+
+
+[ActiveJob] [WebhookJob] [37de5444-b74f-437f-8ec7-e9c802bf6ff9]   [1m[36mWebhook Load (0.2ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks" WHERE "webhooks"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+[ActiveJob] [WebhookJob] [37de5444-b74f-437f-8ec7-e9c802bf6ff9] Performing WebhookJob (Job ID: 37de5444-b74f-437f-8ec7-e9c802bf6ff9) from Async(default) enqueued at 2024-04-18T06:52:25Z with arguments: #<GlobalID:0x00005d3d3c7789c8 @uri=#<URI::GID gid://yash-webhook-task/Webhook/3>>
+[ActiveJob] [WebhookJob] [37de5444-b74f-437f-8ec7-e9c802bf6ff9] Performed WebhookJob (Job ID: 37de5444-b74f-437f-8ec7-e9c802bf6ff9) from Async(default) in 2.22ms
+Started GET "/webhooks" for ::1 at 2024-04-18 12:22:27 +0530
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.3ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/_webhook.html.erb (Duration: 0.1ms | Allocations: 48)
+  Rendered webhooks/_webhook.html.erb (Duration: 0.0ms | Allocations: 47)
+  Rendered webhooks/_webhook.html.erb (Duration: 0.0ms | Allocations: 47)
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1203)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | Allocations: 2538)
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.3ms | Allocations: 2869)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/webhooks/stripe" for 127.0.0.1 at 2024-04-18 12:31:22 +0530
+  
+LoadError (cannot load such file -- /home/witmates/Desktop/projects/Demo_Project/yash_webhook_task/config/routes.rb):
+  
+railties (7.0.8.1) lib/rails/application/routes_reloader.rb:50:in `load'
+railties (7.0.8.1) lib/rails/application/routes_reloader.rb:50:in `block in load_paths'
+railties (7.0.8.1) lib/rails/application/routes_reloader.rb:50:in `each'
+railties (7.0.8.1) lib/rails/application/routes_reloader.rb:50:in `load_paths'
+railties (7.0.8.1) lib/rails/application/routes_reloader.rb:24:in `reload!'
+railties (7.0.8.1) lib/rails/application/routes_reloader.rb:38:in `block in updater'
+activesupport (7.0.8.1) lib/active_support/file_update_checker.rb:83:in `execute'
+railties (7.0.8.1) lib/rails/application/routes_reloader.rb:13:in `execute'
+railties (7.0.8.1) lib/rails/application/finisher.rb:171:in `block (2 levels) in <module:Finisher>'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:445:in `instance_exec'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:445:in `block in make_lambda'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:199:in `block (2 levels) in halting'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:687:in `block (2 levels) in default_terminator'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:686:in `catch'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:686:in `block in default_terminator'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:200:in `block in halting'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:595:in `block in invoke_before'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:595:in `each'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:595:in `invoke_before'
+activesupport (7.0.8.1) lib/active_support/callbacks.rb:106:in `run_callbacks'
+activesupport (7.0.8.1) lib/active_support/execution_wrapper.rb:129:in `run'
+activesupport (7.0.8.1) lib/active_support/execution_wrapper.rb:125:in `run!'
+activesupport (7.0.8.1) lib/active_support/reloader.rb:114:in `run!'
+activesupport (7.0.8.1) lib/active_support/execution_wrapper.rb:78:in `block in run!'
+<internal:kernel>:90:in `tap'
+activesupport (7.0.8.1) lib/active_support/execution_wrapper.rb:75:in `run!'
+activesupport (7.0.8.1) lib/active_support/reloader.rb:63:in `run!'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/show_exceptions.rb:29:in `call'
+railties (7.0.8.1) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.8.1) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.8.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.8.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.8.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.8.1) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.9) lib/rack/method_override.rb:24:in `call'
+rack (2.2.9) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.8.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.9) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.8.1) lib/action_dispatch/middleware/host_authorization.rb:138:in `call'
+railties (7.0.8.1) lib/rails/engine.rb:530:in `call'
+puma (5.6.8) lib/puma/configuration.rb:252:in `call'
+puma (5.6.8) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.8) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.8) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.8) lib/puma/server.rb:443:in `process_client'
+puma (5.6.8) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started POST "/webhooks/stripe" for 127.0.0.1 at 2024-04-18 12:31:40 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WebhooksController#create as */*
+  Parameters: {"message"=>"ping", "event"=>"pull_request", "source"=>"stripe"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/webhooks_controller.rb:16:in `create'
+  [1m[36mWebhook Create (0.4ms)[0m  [1m[32mINSERT INTO "webhooks" ("source", "data", "message", "event", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["source", "stripe"], ["data", "{\"message\":\"ping\",\"event\":\"pull_request\",\"controller\":\"webhooks\",\"action\":\"create\",\"source\":\"stripe\"}"], ["message", "ping"], ["event", "pull_request"], ["created_at", "2024-04-18 07:01:40.927328"], ["updated_at", "2024-04-18 07:01:40.927328"]]
+  ↳ app/controllers/webhooks_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (8.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/webhooks_controller.rb:16:in `create'
+[ActiveJob] Enqueued WebhookJob (Job ID: c3254b2a-01da-49a9-a4e3-1cbc48e5925b) to Async(default) with arguments: #<GlobalID:0x0000718e58f24a60 @uri=#<URI::GID gid://yash-webhook-task/Webhook/4>>
+Completed 200 OK in 26ms (Views: 0.2ms | ActiveRecord: 11.1ms | Allocations: 23732)
+
+
+[ActiveJob] [WebhookJob] [c3254b2a-01da-49a9-a4e3-1cbc48e5925b]   [1m[36mWebhook Load (0.2ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks" WHERE "webhooks"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+[ActiveJob] [WebhookJob] [c3254b2a-01da-49a9-a4e3-1cbc48e5925b] Performing WebhookJob (Job ID: c3254b2a-01da-49a9-a4e3-1cbc48e5925b) from Async(default) enqueued at 2024-04-18T07:01:40Z with arguments: #<GlobalID:0x0000718e3006b578 @uri=#<URI::GID gid://yash-webhook-task/Webhook/4>>
+[ActiveJob] [WebhookJob] [c3254b2a-01da-49a9-a4e3-1cbc48e5925b] Performed WebhookJob (Job ID: c3254b2a-01da-49a9-a4e3-1cbc48e5925b) from Async(default) in 4.35ms

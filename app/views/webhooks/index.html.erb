@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Webhooks</h1>
+
+<div id="webhooks">
+  <% @webhooks.each do |webhook| %>
+    <%= render webhook %>
+    <p>
+      <%= link_to "Show this webhook", webhook %>
+    </p>
+  <% end %>
+</div>
+
