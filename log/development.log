@@ -337,3 +337,51 @@ Completed 200 OK in 26ms (Views: 0.2ms | ActiveRecord: 11.1ms | Allocations: 237
 [ActiveJob] [WebhookJob] [c3254b2a-01da-49a9-a4e3-1cbc48e5925b]   [1m[36mWebhook Load (0.2ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks" WHERE "webhooks"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
 [ActiveJob] [WebhookJob] [c3254b2a-01da-49a9-a4e3-1cbc48e5925b] Performing WebhookJob (Job ID: c3254b2a-01da-49a9-a4e3-1cbc48e5925b) from Async(default) enqueued at 2024-04-18T07:01:40Z with arguments: #<GlobalID:0x0000718e3006b578 @uri=#<URI::GID gid://yash-webhook-task/Webhook/4>>
 [ActiveJob] [WebhookJob] [c3254b2a-01da-49a9-a4e3-1cbc48e5925b] Performed WebhookJob (Job ID: c3254b2a-01da-49a9-a4e3-1cbc48e5925b) from Async(default) in 4.35ms
+Started POST "/webhooks/stripe" for 127.0.0.1 at 2024-04-18 13:34:54 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WebhooksController#create as */*
+  Parameters: {"message"=>"ping", "event"=>"pull_request", "source"=>"stripe"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/webhooks_controller.rb:16:in `create'
+  [1m[36mWebhook Create (0.4ms)[0m  [1m[32mINSERT INTO "webhooks" ("source", "data", "message", "event", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["source", "stripe"], ["data", "{\"message\":\"ping\",\"event\":\"pull_request\",\"controller\":\"webhooks\",\"action\":\"create\",\"source\":\"stripe\"}"], ["message", "ping"], ["event", "pull_request"], ["created_at", "2024-04-18 08:04:54.710350"], ["updated_at", "2024-04-18 08:04:54.710350"]]
+  ↳ app/controllers/webhooks_controller.rb:16:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/webhooks_controller.rb:16:in `create'
+[ActiveJob] Enqueued WebhookJob (Job ID: 37059fcc-0d39-41ea-9058-29f900c1e380) to Async(default) with arguments: #<GlobalID:0x000073ca512bcb38 @uri=#<URI::GID gid://yash-webhook-task/Webhook/5>>
+Completed 200 OK in 24ms (Views: 0.2ms | ActiveRecord: 3.9ms | Allocations: 24534)
+
+
+[ActiveJob] [WebhookJob] [37059fcc-0d39-41ea-9058-29f900c1e380]   [1m[36mWebhook Load (0.2ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks" WHERE "webhooks"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+[ActiveJob] [WebhookJob] [37059fcc-0d39-41ea-9058-29f900c1e380] Performing WebhookJob (Job ID: 37059fcc-0d39-41ea-9058-29f900c1e380) from Async(default) enqueued at 2024-04-18T08:04:54Z with arguments: #<GlobalID:0x000073ca2c0b7a88 @uri=#<URI::GID gid://yash-webhook-task/Webhook/5>>
+[ActiveJob] [WebhookJob] [37059fcc-0d39-41ea-9058-29f900c1e380] Performed WebhookJob (Job ID: 37059fcc-0d39-41ea-9058-29f900c1e380) from Async(default) in 1210.93ms
+Started GET "/" for ::1 at 2024-04-18 13:35:02 +0530
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/witmates/.rvm/gems/ruby-3.0.0/gems/railties-7.0.8.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/witmates/.rvm/gems/ruby-3.0.0/gems/railties-7.0.8.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.3ms | Allocations: 833)
+Completed 200 OK in 11ms (Views: 5.6ms | ActiveRecord: 0.0ms | Allocations: 4553)
+
+
+Started GET "/webhooks" for ::1 at 2024-04-18 13:35:07 +0530
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.3ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/_webhook.html.erb (Duration: 0.8ms | Allocations: 319)
+  Rendered webhooks/_webhook.html.erb (Duration: 0.1ms | Allocations: 42)
+  Rendered webhooks/_webhook.html.erb (Duration: 0.1ms | Allocations: 42)
+  Rendered webhooks/_webhook.html.erb (Duration: 0.1ms | Allocations: 42)
+  Rendered webhooks/_webhook.html.erb (Duration: 0.0ms | Allocations: 42)
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 10.1ms | Allocations: 6301)
+  Rendered layout layouts/application.html.erb (Duration: 50.1ms | Allocations: 30326)
+Completed 500 Internal Server Error in 53ms (ActiveRecord: 0.3ms | Allocations: 31764)
+
+
+  
+ActionView::Template::Error (link_tree argument must be a directory):
+  
+app/assets/config/manifest.js:4
+Started GET "/favicon.ico" for ::1 at 2024-04-18 13:35:07 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
